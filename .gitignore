@@ -53,3 +53,11 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
+### Bower ###
+resources/assets/bower/
+.bower-cache
+.bower-registry
+.bower-tmp
+
+public/css
+public/js

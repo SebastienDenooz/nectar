@@ -1,0 +1,27 @@
+{
+  "name": "Nectar",
+  "version": "0.0.1",
+  "authors": [
+    "Sébastien Denooz <sebastien.denooz@gmail.com>"
+  ],
+  "description": "Nectar is a light tool to store and share bookmarks and other links.",
+  "keywords": [
+    "links",
+    "share",
+    "store",
+    "bookmarks"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "selectize": "~0.12.1",
+    "bootstrap": "~3.3.5",
+    "font-awesome": "fontawesome#~4.4.0"
+  }
+}

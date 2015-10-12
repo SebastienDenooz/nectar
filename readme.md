@@ -1,6 +1,7 @@
 ## Nectar
 
 Nectar is a personal light and rapid link collector based on Laravel.
+Mostly inspired by Sharly, from [Sebsauvage](http://sebsauvage.net/)
 
 ### Features
 - Store web url's
