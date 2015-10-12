@@ -24,6 +24,4 @@ Route::get('/', function () {
     return view('index', ['links' => \App\Link::where('is_private', '<', '1')->take(25)->get()]);
 });
 
-Route::post('/link', function () {
-    return view('index', ['links' => \App\Link::where('is_private', '<', '1')->take(25)->get()]);
-});
+Route::resource('api/links', 'LinkController');
