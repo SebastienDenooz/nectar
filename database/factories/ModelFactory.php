@@ -19,3 +19,20 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Link::class, function (Faker\Generator $faker) {
+    $url = $faker->url;
+    return [
+        'source' => $url,
+        'md5_source' => md5($url),
+        'title' => $faker->text(255),
+        'description' => $faker->text(1024),
+        'is_private' => $faker->numberBetween(0,1),
+    ];
+});
+
+$factory->define(App\Tag::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+    ];
+});
