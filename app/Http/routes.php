@@ -12,6 +12,8 @@
 */
 
 // Authentication routes...
+use Illuminate\Support\Facades\Auth;
+
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
@@ -20,8 +22,6 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-Route::get('/', function () {
-    return view('index', ['links' => \App\Link::where('is_private', '<', '1')->take(25)->get()]);
-});
+Route::get('/', 'LinkController@index');
 
-Route::resource('api/links', 'LinkController');
+Route::resource('api/links', 'LinkController', ['middleware' => 'auth']);

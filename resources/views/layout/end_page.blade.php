@@ -19,7 +19,7 @@
                 source: $('input#link_url', form).val(),
                 title: $('input#title', form).val(),
                 description: $('textarea#description', form).val(),
-                is_private: $('input#is_private', form).val(),
+                is_private: $('input#is_private:checked').length ? 1 : 0,
                 tags: $('input#link_tags', form).val()
             };
         }
@@ -37,7 +37,7 @@
                 });
 
             $.when( request ).done( function (data) {
-                console.log('done', data);
+                $(self).prepend('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Link well saved</div>');
             }).always(function(e){
                 console.log('always', e);
             }).fail(function(e){

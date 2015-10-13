@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -19,7 +20,13 @@ class LinkController extends Controller
      */
     public function index()
     {
-        //
+
+        return Auth::check() ? view('index', [
+            'links' => Link::getUsetDashboard()
+        ]) : view('index', [
+            'links' => Link::getAnonymousDashboard()
+        ]);
+
     }
 
     /**
@@ -41,10 +48,33 @@ class LinkController extends Controller
     public function store(Request $request)
     {
         if (Auth::check()){
-            $link = new Link($request->all());
-            $user = User::find(Auth::user()->id);
-            $link->user($user);
-            dd($link);
+
+            $link = [
+                'source' => $request->input('source'),
+                'md5_source' => md5($request->input('source')),
+                'title' => $request->input('title'),
+                'description' => $request->input('description'),
+                'user_id' => Auth::user()->id,
+                'is_private' => $request->input('is_private'),
+            ];
+
+
+            $link = Link::firstOrNew($link);
+            $link->save();
+
+            $tags = explode(',', $request->input('tags'));
+            foreach ($tags as $tag) {
+                $_tag = Tag::firstOrNew(['name' => $tag]);
+                $_tag->save();
+                $link->tags()->attach($_tag);
+            }
+
+            return response()->json(['link' => $link, 'tags' => $link->tags()->get()]);
+
+        } else {
+
+            return redirect('auth/login');
+
         }
     }
 
