@@ -1,6 +1,6 @@
 ## Nectar
 
-Nectar is a personal light and rapid link collector based on Laravel.
+Nectar is a personal light and rapid bookmark collector based on Laravel.
 Mostly inspired by Sharly, from [Sebsauvage](http://sebsauvage.net/)
 
 ### Features
