@@ -2,6 +2,7 @@
 <script src="/js/all.js"></script>
 <script>
     $(function() {
+         $('[data-toggle="tooltip"]').tooltip();
         $('#link_tags').selectize({
             valueField: 'name',
             labelField: 'name',

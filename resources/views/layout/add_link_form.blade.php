@@ -24,7 +24,7 @@
         </div>
         <br/>
         <div class="form-group">
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-default pull-right">Submit</button>
         </div>
     </form>
 @else
