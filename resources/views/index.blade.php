@@ -25,7 +25,6 @@
             </div>
         </div>
         <div class="col-md-4">
-            @include('layout.add_bookmarklet_box')
         </div>
     </div>
 </div>
