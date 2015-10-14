@@ -27,4 +27,12 @@
             <button type="submit" class="btn btn-default">Submit</button>
         </div>
     </form>
+@else
+    <form action="/auth/login" method="POST">
+        @include('auth.login')
+        <input type="hidden" name="redirect" value="/api/links/create">
+        <div class="form-group">
+            <button type="submit" class="btn btn-default">Login</button>
+        </div>
+    </form>
 @endif

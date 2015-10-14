@@ -28,12 +28,13 @@ class Link extends Model
             function ($query) {
                 $query->where('user_id', '=', Auth::user()->id)->where('is_private', '=', 1);
             }
-        )->take(env('DEFAULT_NUMBER_OF_LINK_ITEM'))->get();
+        )->take(env('DEFAULT_NUMBER_OF_LINK_ITEM'))->orderBy('updated_at', 'DESC')->get();
     }
 
     static function getAnonymousDashboard () {
         return Link::where('is_private', '<', '1')
             ->take(env('DEFAULT_NUMBER_OF_LINK_ITEM'))
+            ->orderBy('updated_at', 'DESC')
             ->get();
     }
 }

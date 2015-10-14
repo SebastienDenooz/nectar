@@ -2,8 +2,7 @@
 <html>
     <head>
         <title>Nectar</title>
-        <link href="/css/all.css" rel="stylesheet" crossorigin="anonymous">
-        <link href="/css/app.css" rel="stylesheet" crossorigin="anonymous">
+        @include('layout.head')
     </head>
 <body>
 <div class="container">
@@ -26,7 +25,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            @include('layout.add_link_form')
+            @include('layout.add_bookmarklet_box')
         </div>
     </div>
 </div>

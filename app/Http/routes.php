@@ -25,3 +25,12 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('/', 'LinkController@index');
 
 Route::resource('api/links', 'LinkController', ['middleware' => 'auth']);
+
+Route::resource('api/tags', 'TagController',
+                ['only' => ['index']]);
+
+Route::resource('api/tags', 'TagController',
+                [
+                    'only' => ['store'],
+                    'middleware' => 'auth'
+                ]);

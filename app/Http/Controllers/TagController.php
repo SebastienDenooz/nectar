@@ -2,31 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
-use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Link;
-use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Stmt\Use_;
+use phpDocumentor\Reflection\DocBlock\Tag;
 
-class LinkController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-
-        return Auth::check() ? view('index', [
-            'links' => Link::getUsetDashboard()
-        ]) : view('index', [
-            'links' => Link::getAnonymousDashboard()
-        ]);
-
+        if ($request->has('search')) {
+            return response()->json(\App\Tag::where('name', 'LIKE', '%' . $request->input('search') . '%')->get());
+        } else {
+            return response()->json(\App\Tag::all());
+        }
     }
 
     /**
@@ -36,7 +31,7 @@ class LinkController extends Controller
      */
     public function create()
     {
-        return view('Link/create');
+        //
     }
 
     /**
@@ -47,35 +42,7 @@ class LinkController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::check()){
-
-            $link = [
-                'source' => $request->input('source'),
-                'md5_source' => md5($request->input('source')),
-                'title' => $request->input('title'),
-                'description' => $request->input('description'),
-                'user_id' => Auth::user()->id,
-                'is_private' => $request->input('is_private'),
-            ];
-
-
-            $link = Link::firstOrNew($link);
-            $link->save();
-
-            $tags = explode(',', $request->input('tags'));
-            foreach ($tags as $tag) {
-                $_tag = Tag::firstOrNew(['name' => $tag]);
-                $_tag->save();
-                $link->tags()->attach($_tag);
-            }
-
-            return response()->json(['link' => $link, 'tags' => $link->tags()->get()]);
-
-        } else {
-
-            return redirect('auth/login');
-
-        }
+        //
     }
 
     /**

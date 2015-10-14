@@ -1,0 +1,1 @@
+<a href="javascript:window.open('/api/links/create','targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250');" class="btn btn-primary">Add link</a>
