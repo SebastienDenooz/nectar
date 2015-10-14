@@ -34,9 +34,13 @@ class LinkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('Link/create');
+        $data = [
+            'link' => $request->has('link') ? $request->input('link') : '',
+            'title' => $request->has('title') ? $request->input('title') : '',
+        ];
+        return view('Link/create', $data);
     }
 
     /**

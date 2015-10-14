@@ -71,4 +71,7 @@
             });
         });
     });
+    var link = encodeURIComponent(location.href),
+            title = document.title || location.href;
+    window.open('##############/api/links/create?link=' + link + '&title=' + title,'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250');
 </script>

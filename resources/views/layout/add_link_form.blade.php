@@ -3,11 +3,11 @@
         {!! csrf_field() !!}
         <div class="form-group">
             <label for="link_url">Url address</label>
-            <input type="text" class="form-control" name="link_url" id="link_url" placeholder="Url">
+            <input type="text" class="form-control" name="link_url" id="link_url" placeholder="Url" value="{{$link}}">
         </div>
         <div class="form-group">
             <label for="link_url">Title</label>
-            <input type="text" class="form-control" name="title" id="title" placeholder="Title">
+            <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="{{$title}}">
         </div>
         <div class="form-group">
             <label for="description">Description</label>
