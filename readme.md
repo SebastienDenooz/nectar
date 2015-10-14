@@ -22,6 +22,7 @@ More to come :-)
 
 ### Todo
 **Target 1.0**
+- [ ] Manage error
 - [ ] Wash & beautify the code
 - [ ] Write unit tests
 - [ ] Implement AngularJS
