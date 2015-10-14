@@ -6,32 +6,17 @@
             valueField: 'name',
             labelField: 'name',
             searchField: 'name',
-            create: false,
-            render: {
-                option: function(item, escape) {
-                    return '<div>' +
-                            '<span class="title">' +
-                            '<span class="name">' + escape(item.name) + '</span>' +
-                            '</span>' +
-                            '</div>';
-                }
-            },
-            score: function(search) {
-                var score = this.getScoreFunction(search);
-                return function(item) {
-                    return score(item) * (1 + Math.min(item.watchers / 100, 1));
-                };
-            },
+            create: true,
+            preload: true,
             load: function(query, callback) {
                 if (!query.length) return callback();
                 $.ajax({
-                    url: '/api/tags/?search=' + encodeURIComponent(query),
+                    url: '{{env('SITE_BASE_URL','http://nectar.app')}}/api/tags/?search=' + encodeURIComponent(query),
                     type: 'GET',
                     error: function() {
                         callback();
                     },
                     success: function(res) {
-                        console.log(res);
                         callback(res.slice(0, 10));
                     }
                 });
@@ -71,5 +56,5 @@
             });
         });
     });
-    
+
 </script>

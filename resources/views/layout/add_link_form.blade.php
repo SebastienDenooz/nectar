@@ -1,7 +1,7 @@
 @if (Auth::check())
     <form id="add_link">
         {!! csrf_field() !!}
-        <div class="form-group">
+        <div class="form-group {{ isset($link) ? 'hidden' : '' }}">
             <label for="link_url">Url address</label>
             <input type="text" class="form-control" name="link_url" id="link_url" placeholder="Url" value="{{$link}}">
         </div>

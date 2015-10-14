@@ -17,7 +17,7 @@ class TagController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->has('search')) {
+        if ($request->has('search') && !empty($request->input('search'))) {
             return response()->json(\App\Tag::where('name', 'LIKE', '%' . $request->input('search') . '%')->get());
         } else {
             return response()->json(\App\Tag::all());
