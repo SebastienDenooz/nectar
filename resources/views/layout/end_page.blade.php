@@ -1,8 +1,9 @@
 @include('layout.modals')
 <script src="/js/all.js"></script>
 <script>
+    hljs.initHighlightingOnLoad();
     $(function() {
-         $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="tooltip"]').tooltip();
         $('#link_tags').selectize({
             valueField: 'name',
             labelField: 'name',
@@ -55,6 +56,10 @@
             }).fail(function(e){
                 $(self).before('<div class="alert alert-error" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Something went wrong...</div>');
             });
+        });
+
+        $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
         });
     });
 
