@@ -28,7 +28,8 @@ elixir(function(mix) {
         'jquery/dist/jquery.min.js',
         'selectize/dist/js/standalone/selectize.min.js',
         'bootstrap/dist/js/bootstrap.min.js',
-        bowerDir + 'highlightjs/highlight.pack.min.js'
+        bowerDir + 'highlightjs/highlight.pack.min.js',
+        bowerDir + 'mustache.js/mustache.min.js'
     ], 'public/js/all.js', bowerDir);
 
     mix.copy(bowerDir + 'font-awesome/fonts', 'public/fonts');

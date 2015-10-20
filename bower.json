@@ -20,9 +20,10 @@
     "tests"
   ],
   "dependencies": {
-    "selectize": "~0.12.1",
     "bootstrap": "~3.3.5",
     "font-awesome": "fontawesome#~4.4.0",
-    "highlightjs": "~8.8.0"
+    "highlightjs": "~8.8.0",
+    "mustache.js": "mustache#~2.2.0",
+    "selectize": "~0.12.1"
   }
 }

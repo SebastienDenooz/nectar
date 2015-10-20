@@ -9,14 +9,14 @@
 ### Deployment
 Tested on Ubuntu 14.04
 
-**Dependencies**
+**Install dependencies**
 ```
 sudo apt-get install npm php5-mcrypt
 sudo npm -g install gulp node bower
 sudo ln -s /usr/bin/nodejs /usr/bin/node
 ```
 
-**Client part**
+**Install Nectar**
 ```
 git clone https://github.com/SebastienDenooz/nectar.git
 cd nectar
@@ -29,4 +29,14 @@ bower install
 gulp --production
 # At this time, you need to setup your .env correctly
 php artisan migrate
+```
+
+**Update Nectar**
+```
+git pull origin master
+./composer install
+php artisan migrate
+bower install
+npm install
+gulp --production
 ```

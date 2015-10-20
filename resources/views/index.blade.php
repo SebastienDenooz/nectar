@@ -13,7 +13,7 @@
         <div class="col-md-8">
             <div class="list-group">
                 @foreach($links as $link)
-                <div class="list-group-item">
+                <div class="list-group-item" data-edit_token="{{ csrf_token() }}" data-delete_token="{{ csrf_token() }}" data-link_id="{{ $link->id }}">
                     <!-- <img class="pull-left img-responsive" src="http://fakeimg.pl/100x100/" alt="#" style="margin-right: 15px;"> -->
                     @if (Auth::check() && Auth::user()->id == $link->user_id)
                         <div class="btn-group pull-right" role="group" aria-label="...">
