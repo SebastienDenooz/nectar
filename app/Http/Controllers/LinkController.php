@@ -10,9 +10,17 @@ use App\Http\Controllers\Controller;
 use App\Link;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Stmt\Use_;
+use Symfony\Component\HttpFoundation\Response;
 
 class LinkController extends Controller
 {
+    function __construct()
+    {
+        // TODO: Implement __construct() method.
+        $this->middleware('auth', ['except' => ['index','show']]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -34,9 +42,13 @@ class LinkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $data = [
+            'link' => $request->has('link') ? $request->input('link') : '',
+            'title' => $request->has('title') ? $request->input('title') : '',
+        ];
+        return view('Link/create', $data);
     }
 
     /**
@@ -86,7 +98,11 @@ class LinkController extends Controller
      */
     public function show($id)
     {
-        //
+        $link = Link::find($id);
+        return response()->json([
+            'link' => Link::find($id)->toArray(),
+            'tags' => $link->tags()->get()
+        ]);
     }
 
     /**
@@ -109,7 +125,35 @@ class LinkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $link = Link::find($id);
+
+        if (!$link->user_id == Auth::user()->id){
+            return new \Illuminate\Http\Response('No link or no permission to delete', 403);
+        }
+
+        $link->source = $request->has('source') ? $request->input('source') : $link->source ;
+        $link->md5_source = $request->has('md5_source') ? md5($request->input('source')) : $link->md5_source ;
+        $link->title = $request->has('title') ? $request->input('title') : $link->title ;
+        $link->description = $request->has('description') ? $request->input('description') : $link->description ;
+        $link->is_private = $request->has('is_private') ? $request->input('is_private') : $link->is_private ;
+
+        if ($request->has('tags')) {
+            $tags = explode(',', $request->input('tags'));
+            foreach ($tags as $tag) {
+                $_tag = Tag::firstOrNew(['name' => $tag]);
+                $_tag->save();
+
+                if (!$link->tags->contains($_tag->id)) {
+                    $link->tags()->attach($_tag);
+                }
+
+            }
+        }
+
+        $link->save();
+
+
     }
 
     /**
@@ -120,6 +164,13 @@ class LinkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (Link::where([
+            'user_id' => Auth::user()->id,
+            'id' => $id]
+        )->delete()) {
+            return new \Illuminate\Http\Response('', 202);
+        }
+
+        return new \Illuminate\Http\Response('No link or no permission to delete', 403);
     }
 }

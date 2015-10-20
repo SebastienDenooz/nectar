@@ -28,6 +28,12 @@ class CreateLinkTagPivotTable extends Migration
      */
     public function down()
     {
+        Schema::table('link_tag', function(Blueprint $table) {
+            $table->dropForeign('link_tag_link_id_foreign');
+        });
+        Schema::table('link_tag', function(Blueprint $table) {
+            $table->dropForeign('link_tag_tag_id_foreign');
+        });
         Schema::drop('link_tag');
     }
 }

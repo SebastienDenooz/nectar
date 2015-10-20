@@ -20,13 +20,16 @@ elixir(function(mix) {
         bowerDir + 'bootstrap/dist/css/bootstrap.min.css',
         bowerDir + 'font-awesome/css/font-awesome.min.css',
         bowerDir + 'selectize/dist/css/selectize.css',
-        bowerDir + 'selectize/dist/css/selectize.bootstrap3.css'
+        bowerDir + 'selectize/dist/css/selectize.bootstrap3.css',
+        bowerDir + 'highlightjs/styles/agate.css'
     ]);
 
     mix.scripts([
         'jquery/dist/jquery.min.js',
         'selectize/dist/js/standalone/selectize.min.js',
-        'bootstrap/dist/js/bootstrap.min.js'
+        'bootstrap/dist/js/bootstrap.min.js',
+        bowerDir + 'highlightjs/highlight.pack.min.js',
+        bowerDir + 'mustache.js/mustache.min.js'
     ], 'public/js/all.js', bowerDir);
 
     mix.copy(bowerDir + 'font-awesome/fonts', 'public/fonts');

@@ -28,6 +28,7 @@
                     <li><a href="/users/{{Auth::user()->id}}">{{Auth::user()->name}}</a></li>
                     <li><a href="/auth/logout"><i class="fa fa-sign-out"></i></a></li>
                 </ul>
+                <a data-toggle="tooltip" data-placement="left" title="Bookmark this and use it during browsing to save links!" href="javascript:(function()%7Bvar%20link%20%3D%20encodeURIComponent(location.href)%2Ctitle%20%3D%20document.title%20%7C%7C%20location.href%3Bwindow.open('{{env('SITE_BASE_URL','http://nectar.app')}}%2Fapi%2Flinks%2Fcreate%3Flink%3D'%20%2B%20link%20%2B%20'%26title%3D'%20%2B%20title%2C'targetWindow'%2C%20'toolbar%3Dno%2Clocation%3Dno%2Cstatus%3Dno%2Cmenubar%3Dno%2Cscrollbars%3Dyes%2Cresizable%3Dyes%2Cwidth%3D600%2Cheight%3D250')%7D)()" class="btn btn-default navbar-btn pull-right">Add link</a>
             @endif
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

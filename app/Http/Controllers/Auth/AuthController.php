@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Support\Facades\URL;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -32,6 +33,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
+        $this->redirectPath = URL::previous();
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 

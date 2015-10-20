@@ -1,2 +1,15 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+body{
+  padding-top: 10px;
+  .add_link {
+    h1{
+      margin-top: 0;
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+    div.form-group label{
+      display: none;
+    }
+  }
+}
