@@ -31,6 +31,9 @@
             </div>
         </div>
         <div class="col-md-4">
+            <p class="tag_cloud">
+                @foreach($tags as $tag)<a style="margin: 5px; font-size: {{1+($tag->links()->get()->count()/5)}}em" class="btn btn-default" href="tag/{{$tag->id}}">{{$tag->name}}&nbsp;&nbsp;<span class="badge">{{$tag->links()->get()->count()}}</span></a>&nbsp;@endforeach
+            </p>
         </div>
     </div>
 </div>

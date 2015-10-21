@@ -29,10 +29,19 @@ class LinkController extends Controller
     public function index()
     {
 
+        $tags = Tag::all();
+/*
+        array_map(function ($item) {
+            $item->count_links = $item->links()->get()->count();
+            return $item;
+        }, $tags);
+*/
         return Auth::check() ? view('index', [
-            'links' => Link::getUsetDashboard()
+            'links' => Link::getUsetDashboard(),
+            'tags' => $tags
         ]) : view('index', [
-            'links' => Link::getAnonymousDashboard()
+            'links' => Link::getAnonymousDashboard(),
+            'tags' => $tags
         ]);
 
     }
