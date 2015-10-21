@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Nectar</a>
+            <a class="navbar-brand" href="/">Nectar</a>
         </div>
         <form class="navbar-form navbar-left" role="search">
             <div class="input-group">

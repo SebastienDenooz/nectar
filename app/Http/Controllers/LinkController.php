@@ -30,12 +30,7 @@ class LinkController extends Controller
     {
 
         $tags = Tag::all();
-/*
-        array_map(function ($item) {
-            $item->count_links = $item->links()->get()->count();
-            return $item;
-        }, $tags);
-*/
+
         return Auth::check() ? view('index', [
             'links' => Link::getUsetDashboard(),
             'tags' => $tags

@@ -23,6 +23,7 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::get('/', 'LinkController@index');
+Route::get('/tag/{id}', 'TagController@show');
 
 Route::resource('api/links', 'LinkController', ['middleware' => 'auth']);
 

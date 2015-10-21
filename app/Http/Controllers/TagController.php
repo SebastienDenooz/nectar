@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use phpDocumentor\Reflection\DocBlock\Tag;
+use Illuminate\Support\Facades\App;
+use App\Tag;
+use Illuminate\Support\Facades\Auth;
 
 class TagController extends Controller
 {
@@ -53,7 +55,17 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $tags = Tag::where('id',$id)->get();
+        //dd($tags);
+        return Auth::check() ? view('index', [
+            'links' => Tag::getUsetDashboard($id),
+            'tags' => $tags
+        ]) : view('index', [
+            'links' => Tag::getAnonymousDashboard($id),
+            'tags' => $tags
+        ]);
+
     }
 
     /**
