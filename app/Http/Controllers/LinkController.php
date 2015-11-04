@@ -32,7 +32,7 @@ class LinkController extends Controller
         $tags = Tag::all();
 
         return Auth::check() ? view('index', [
-            'links' => Link::getUsetDashboard(),
+            'links' => Link::getUserDashboard(),
             'tags' => $tags
         ]) : view('index', [
             'links' => Link::getAnonymousDashboard(),

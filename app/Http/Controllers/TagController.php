@@ -56,10 +56,13 @@ class TagController extends Controller
     public function show($id)
     {
 
-        $tags = Tag::where('id',$id)->get();
-        //dd($tags);
+        $tags = Tag::all();
+        foreach ($tags as &$tag) {
+            $tag->id == $id ? $tag->active = 1 : $tag->active = 0;
+        }
+
         return Auth::check() ? view('index', [
-            'links' => Tag::getUsetDashboard($id),
+            'links' => Tag::getUserDashboard($id),
             'tags' => $tags
         ]) : view('index', [
             'links' => Tag::getAnonymousDashboard($id),

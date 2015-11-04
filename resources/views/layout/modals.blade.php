@@ -7,7 +7,7 @@
             </div>
             <form method="POST" action="/auth/login">
                 <div class="modal-body">
-                    @include('auth.login')
+                    @include('forms.login')
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -19,7 +19,7 @@ class Link extends Model
         return $this->belongsToMany('App\Tag', 'link_tag');
     }
 
-    static function getUsetDashboard () {
+    static function getUserDashboard () {
         return Link::where(
             function($query) {
                 $query->where('is_private', '=', 0);
@@ -28,13 +28,12 @@ class Link extends Model
             function ($query) {
                 $query->where('user_id', '=', Auth::user()->id)->where('is_private', '=', 1);
             }
-        )->take(env('DEFAULT_NUMBER_OF_LINK_ITEM'))->orderBy('updated_at', 'DESC')->get();
+        )->orderBy('updated_at', 'DESC')->simplePaginate(env('DEFAULT_NUMBER_OF_LINK_ITEM'));
     }
 
     static function getAnonymousDashboard () {
         return Link::where('is_private', '<', '1')
-            ->take(env('DEFAULT_NUMBER_OF_LINK_ITEM'))
             ->orderBy('updated_at', 'DESC')
-            ->get();
+            ->simplePaginate(env('DEFAULT_NUMBER_OF_LINK_ITEM'));
     }
 }

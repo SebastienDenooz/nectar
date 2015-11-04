@@ -126,7 +126,10 @@
 
             $.when( request ).done( function (data) {
                 $(self).slideUp();
-                $(self).before('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Link well saved</div>');
+                $.when(
+                    $(self).before('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Link well saved</div>')
+                ).done( window.close() );
+
             }).always(function(e){
                 console.log('always', e);
             }).fail(function(e){

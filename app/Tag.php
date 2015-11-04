@@ -9,22 +9,30 @@ class Tag extends Model
 {
      protected $fillable = array('name');
 
+    /**
+     * @return \Closure
+     */
+    public static function authorize()
+    {
+        return function ($query) {
+            $query->where('is_private', '=', 0)->orWhere(function ($query) {
+                $query->where('user_id', '=', Auth::user()->id)->where('is_private', '=', 1);
+            });
+
+        };
+    }
+
     public function links()
     {
         return $this->belongsToMany('App\Link', 'link_tag');
     }
 
-    public static function getUsetDashboard($id)
+    public static function getUserDashboard($id)
     {
         return Tag::find($id)->links()
-                ->where('is_private', '=', 0)
-                ->orWhere(
-                function ($query) {
-                    $query->where('user_id', '=', Auth::user()->id)
-                    ->where('is_private', '=', 1);
-                }
+                ->where(
+                    self::authorize()
             )->take(env('DEFAULT_NUMBER_OF_LINK_ITEM'))->orderBy('updated_at', 'DESC')->get();
-
     }
 
     public static function getAnonymousDashboard($id)

@@ -28,10 +28,14 @@ Route::get('/tag/{id}', 'TagController@show');
 Route::resource('api/links', 'LinkController', ['middleware' => 'auth']);
 
 Route::resource('api/tags', 'TagController',
-                ['only' => ['index']]);
+                ['only' => ['index']]
+);
 
 Route::resource('api/tags', 'TagController',
                 [
                     'only' => ['store'],
                     'middleware' => 'auth'
-                ]);
+                ]
+);
+
+Route::get('feeds/json', 'FeedController@json');
